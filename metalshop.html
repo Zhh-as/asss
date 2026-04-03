@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetalShop | Магазин электрогитар</title>
+    <link rel="stylesheet" href="stylee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo"><i class="fas fa-guitar"></i> Metal<span>Shop</span></div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="metalshop.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <div class="cart-icon" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </div>
+                <div class="burger" id="burger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <sect   on class="hero">
+        <div class="hero-content fade-in">
+            <h1>Лучшие электрогитары для метала</h1>
+            <p>От классики до кастомных монстров. Доставка по всему Казахстану.</p>
+            <a href="catalog.html" class="btn">Смотреть каталог</a>
+        </div>
+    </section>
+    <section class="benefits">
+        <div class="container">
+            <h2>Почему выбирают MetalShop?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚚</div>
+                    <h3>Быстрая доставка</h3>
+                    <p>Доставляем по всему Казахстану за 3-7 дней</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💯</div>
+                    <h3>Оригинальные товары</h3>
+                    <p>100% гарантия подлинности каждой гитары</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💳</div>
+                    <h3>Рассрочка на 12 месяцев</h3>
+                    <p>Без переплаты через Kaspi.kz</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">☎️</div>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Всегда готовы помочь через WhatsApp и Telegram</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <h2>Ваша корзина</h2>
+            <div id="cartItems"></div>
+            <div class="total">Итого: <span id="totalPrice">0</span> тг</div>
+            <button class="btn" onclick="checkout()">Оформить заказ</button>
+            <button class="btn btn-close" id="closeCart">Закрыть</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>О магазине</h4>
+                    <p>MetalShop - ваш надежный источник качественных электрогитар. Доставка по всему Казахстану.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/metalshop_kz" target="_blank">📱 Instagram</a>
+                        <a href="https://t.me/metalshop_kz" target="_blank">📢 Telegram</a>
+                        <a href="https://wa.me/77066674829" target="_blank">💬 WhatsApp</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="metalshop.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="#">О доставке</a></li>
+                        <li><a href="#">О возвратах</a></li>
+                        <li><a href="#">Гарантия</a></li>
+                        <li><a href="#">Рассрочка</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>📞 <strong>+7 (706) 667-48-29</strong></p>
+                    <p>📧 <strong>info@metalshop.kz</strong></p>
+                    <p>🏙️ г. Алматы, ул. Казыбек Би, 187</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MetalShop. Все права защищены.</p>
+                <p>Made with 🎸 for metal lovers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

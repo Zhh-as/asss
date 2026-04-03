@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ успешно создан | MetalShop</title>
+    <link rel="stylesheet" href="stylee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">Metal<span>Shop</span></div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="metalshop.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <div class="cart-icon" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </div>
+                <div class="burger" id="burger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5" style="margin-top: 80px; text-align: center; max-width: 700px;">
+        <div style="background: var(--card-bg); padding: 50px 30px; border-radius: 15px; border: 2px solid var(--primary);">
+            <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
+            
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px; color: var(--primary);">Заказ успешно создан!</h1>
+            
+            <div style="background: #252525; padding: 20px; border-radius: 10px; margin: 30px 0;">
+                <p style="color: var(--gray); margin-bottom: 10px; font-size: 0.9rem;">Номер вашего заказа:</p>
+                <p id="orderNumber" style="font-size: 1.8rem; font-weight: bold; color: var(--primary); letter-spacing: 2px;">MET000000</p>
+            </div>
+
+            <div id="orderDetails" style="background: #1a1a1a; padding: 20px; border-radius: 10px; margin-bottom: 30px; text-align: left; border: 1px solid #333;">
+                <h3 style="margin-bottom: 15px; color: var(--primary);">Информация о заказе:</h3>
+                <div style="display: grid; gap: 10px; font-size: 0.95rem;">
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #333;">
+                        <span style="color: var(--gray);">👤 Имя:</span>
+                        <span id="detailName" style="font-weight: bold;">-</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #333;">
+                        <span style="color: var(--gray);">📞 Телефон:</span>
+                        <span id="detailPhone" style="font-weight: bold;">-</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #333;">
+                        <span style="color: var(--gray);">📍 Доставка:</span>
+                        <span id="detailCity" style="font-weight: bold;">-</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #333;">
+                        <span style="color: var(--gray);">💳 Способ оплаты:</span>
+                        <span id="detailPayment" style="font-weight: bold; color: var(--primary);">-</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #333;">
+                        <span style="color: var(--gray);">📦 Товаров:</span>
+                        <span id="detailItemsCount" style="font-weight: bold;">0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: bold;">
+                        <span style="color: var(--primary);">💰 Сумма к оплате:</span>
+                        <span id="detailTotal" style="color: var(--primary);">0 тг</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(255, 62, 62, 0.1); border: 1px solid var(--primary); padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">� Информация об оплате через Kaspi</h3>
+                <p style="color: #ccc; margin-bottom: 15px;"><strong>✅ Ваш заказ успешно создан!</strong></p>
+                <p style="color: #ccc; margin-bottom: 15px;">Наш кассир скоро отправит вам счет на оплату через <strong>Kaspi.kz</strong> удаленно.</p>
+                <p style="color: #ccc; margin-bottom: 15px;">Вы сможете оплатить его через приложение Kaspi прямо со своего телефона — быстро и безопасно.</p>
+                
+                <div style="background: #252525; padding: 15px; border-radius: 5px; margin: 15px 0; border-left: 3px solid var(--primary);">
+                    <p style="color: var(--gray); margin-bottom: 10px;"><strong>Ожидайте счет на номер:</strong></p>
+                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--primary);">+7 (700) 123-45-67</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;">Счет придет в течение 5-10 минут</p>
+                </div>
+                
+                <p style="font-size: 0.9rem; color: var(--gray);">
+                    ❓ <strong>Не получили счет?</strong> Напишите нам по номеру <strong>+7 (706) 667-48-29</strong> 
+                    <br>в WhatsApp или Telegram и мы отправим вам счет вручную
+                </p>
+            </div>
+
+            <div style="background: #1a1a1a; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #333;">
+                <h3 style="color: var(--text); margin-bottom: 15px;">📦 Что дальше?</h3>
+                <div style="display: grid; gap: 15px; font-size: 0.95rem; text-align: left;">
+                    <div style="display: flex; gap: 12px;">
+                        <div style="color: var(--primary); font-size: 1.3rem; min-width: 30px;">1️⃣</div>
+                        <div>
+                            <p style="font-weight: bold; color: var(--text);">Ожидайте счет в Kaspi</p>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Кассир отправит счет на ваш номер. Откройте его в приложении Kaspi.kz</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <div style="color: var(--primary); font-size: 1.3rem; min-width: 30px;">2️⃣</div>
+                        <div>
+                            <p style="font-weight: bold; color: var(--text);">Оплатите счет</p>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Перейдите в приложение Kaspi и оплатите счет удаленно. Это займет 1-2 минуты</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <div style="color: var(--primary); font-size: 1.3rem; min-width: 30px;">3️⃣</div>
+                        <div>
+                            <p style="font-weight: bold; color: var(--text);">Получите товар</p>
+                            <p style="color: var(--gray); font-size: 0.85rem;">После подтверждения платежа мы готовим заказ. Доставка 3-7 дней по Казахстану</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                <a href="catalog.html" class="btn" style="text-decoration: none;">← Вернуться в каталог</a>
+                <a href="contacts.html" class="btn" style="text-decoration: none; background: #444;">📞 Контакты</a>
+            </div>
+
+            <p style="color: var(--gray); margin-top: 30px; font-size: 0.9rem;">
+                📞 <strong>Номер для справок:</strong> <strong style="color: var(--primary);">+7 (706) 667-48-29</strong>
+                <br>Свяжитесь в WhatsApp, Telegram или позвоните, если вам нужна помощь
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>О магазине</h4>
+                    <p>MetalShop - ваш надежный источник качественных электрогитар. Доставка по всему Казахстану.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/metalshop_kz" target="_blank">📱 Instagram</a>
+                        <a href="https://t.me/metalshop_kz" target="_blank">📢 Telegram</a>
+                        <a href="https://wa.me/77066674829" target="_blank">💬 WhatsApp</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="metalshop.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="#">О доставке</a></li>
+                        <li><a href="#">О возвратах</a></li>
+                        <li><a href="#">Гарантия</a></li>
+                        <li><a href="#">Рассрочка</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>📞 <strong>+7 (706) 667-48-29</strong></p>
+                    <p>📧 <strong>info@metalshop.kz</strong></p>
+                    <p>🏙️ г. Алматы, ул. Казыбек Би, 187</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MetalShop. Все права защищены.</p>
+                <p>Made with 🎸 for metal lovers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Получаем номер заказа из URL
+        const params = new URLSearchParams(window.location.search);
+        const orderNumber = params.get('order') || 'MET000000';
+
+        // Получаем данные заказа из localStorage
+        let orderData = localStorage.getItem('lastOrder');
+        
+        console.log('Данные из localStorage:', orderData);
+        
+        if (orderData) {
+            try {
+                orderData = JSON.parse(orderData);
+                console.log('Распарсенные данные:', orderData);
+            } catch(e) {
+                console.error('Ошибка парсинга:', e);
+                orderData = null;
+            }
+        }
+
+        function getPaymentName(payment) {
+            const payments = {
+                'kaspi': '💳 Kaspi.kz (Удаленная оплата)',
+                'cash': '💵 Наличные при получении'
+            };
+            return payments[payment] || '💳 ' + payment;
+        }
+
+        // Заполняем данные на странице
+        if (orderData && orderData.name) {
+            console.log('Заполняю данные заказа...');
+            document.getElementById('orderNumber').textContent = orderData.orderNumber || orderNumber;
+            document.getElementById('detailName').textContent = orderData.name || '-';
+            document.getElementById('detailPhone').textContent = orderData.phone || '-';
+            
+            // Попытаемся найти элемент phoneDisplay если он есть
+            const phoneDisplay = document.getElementById('phoneDisplay');
+            if (phoneDisplay) {
+                phoneDisplay.textContent = orderData.phone || '-';
+            }
+            
+            document.getElementById('detailCity').textContent = orderData.city || '-';
+            document.getElementById('detailPayment').textContent = getPaymentName(orderData.payment) || '💳 Kaspi.kz';
+            
+            const itemCount = orderData.items ? orderData.items.reduce((sum, item) => sum + (item.quantity || 0), 0) : 0;
+            document.getElementById('detailItemsCount').textContent = itemCount;
+            
+            document.getElementById('detailTotal').textContent = (orderData.total ? orderData.total.toLocaleString('ru-RU') : '0') + ' тг';
+        } else {
+            console.warn('Нет данных заказа. Используются значения по умолчанию.');
+            document.getElementById('orderNumber').textContent = orderNumber;
+        }
+
+        // Генерируем простую анимацию
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkmark = document.querySelector('div[style*="font-size: 4rem"]');
+            if (checkmark) {
+                checkmark.style.animation = 'pop 0.5s ease';
+            }
+        });
+    </script>
+
+    <style>
+        @keyframes pop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</body>
+</html>

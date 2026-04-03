@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог | MetalShop</title>
+    <link rel="stylesheet" href="stylee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">Metal<span>Shop</span></div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="metalshop.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <div class="cart-icon" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </div>
+                <div class="burger" id="burger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5" id="catalog">
+        <div class="filters-container">
+            <div class="filter-group search-group">
+                <input type="text" id="searchFilter" placeholder="🔍 Поиск гитары..." class="search-input">
+            </div>
+            <div class="filter-group">
+                <label>📌 Сортировка:</label>
+                <select id="sortFilter">
+                    <option value="default">По умолчанию</option>
+                    <option value="price-low">Дешевле всего</option>
+                    <option value="price-high">Дороже всего</option>
+                    <option value="name">По названию</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>🎸 Бренд:</label>
+                <select id="brandFilter">
+                    <option value="all">Все бренды</option>
+                    <option value="Jackson">Jackson</option>
+                    <option value="Ibanez">Ibanez</option>
+                    <option value="ESP">ESP</option>
+                    <option value="Schecter">Schecter</option>
+                    <option value="Cort">Cort</option>
+                    <option value="Fender">Fender</option>
+                    <option value="Yamaha">Yamaha</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>💰 Цена до:</label>
+                <input type="range" id="priceFilter" min="100000" max="560000" step="50000" value="560000">
+                <span id="priceVal" class="price-display">560 000 тг</span>
+            </div>
+        </div>
+
+        <section class="products-grid" id="productsGrid">
+        </section>
+    </main>
+
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <h2>Ваша корзина</h2>
+            <div id="cartItems"></div>
+            <div class="total">Итого: <span id="totalPrice">0</span> тг</div>
+            <button class="btn" onclick="openCheckoutForm()">Оформить заказ</button>
+            <button class="btn btn-close" id="closeCart">Закрыть</button>
+        </div>
+    </div>
+
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <button style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: white; font-size: 24px; cursor: pointer;" onclick="closeCheckoutForm()">&times;</button>
+            <h2 style="margin-bottom: 30px;">Оформление заказа</h2>
+            
+            <form id="checkoutForm" style="display: grid; gap: 15px;">
+                <!-- Имя -->
+                <div>
+                    <label style="display: block; margin-bottom: 8px; color: var(--gray);">Ваше имя *</label>
+                    <input type="text" id="customerName" placeholder="Иван Петров" required style="width: 100%; padding: 12px; background: #252525; border: 1px solid #333; color: white; border-radius: 5px;">
+                </div>
+
+                <!-- Номер телефона -->
+                <div>
+                    <label style="display: block; margin-bottom: 8px; color: var(--gray);">Номер телефона *</label>
+                    <input type="tel" id="customerPhone" placeholder="+7 (700) 123-45-67" required style="width: 100%; padding: 12px; background: #252525; border: 1px solid #333; color: white; border-radius: 5px;">
+                </div>
+
+                <!-- Город -->
+                <div>
+                    <label style="display: block; margin-bottom: 8px; color: var(--gray);">Город доставки *</label>
+                    <select id="customerCity" required style="width: 100%; padding: 12px; background: #252525; border: 1px solid #333; color: white; border-radius: 5px;">
+                        <option value="">Выберите город</option>
+                        <option value="Алматы">Алматы</option>
+                        <option value="Астана">Астана</option>
+                        <option value="Караганда">Караганда</option>
+                        <option value="Шымкент">Шымкент</option>
+                        <option value="Актобе">Актобе</option>
+                        <option value="Павлодар">Павлодар</option>
+                        <option value="Семей">Семей</option>
+                        <option value="Тараз">Тараз</option>
+                        <option value="Уральск">Уральск</option>
+                        <option value="Кокшетау">Кокшетау</option>
+                        <option value="Другой город">Другой город</option>
+                    </select>
+                </div>
+
+                <!-- Адрес -->
+                <div>
+                    <label style="display: block; margin-bottom: 8px; color: var(--gray);">Адрес доставки *</label>
+                    <input type="text" id="customerAddress" placeholder="Ул. Казыбек Би, дом 187, квартира 5" required style="width: 100%; padding: 12px; background: #252525; border: 1px solid #333; color: white; border-radius: 5px;">
+                </div>
+
+                <!-- Способ оплаты -->
+                <div>
+                    <label style="display: block; margin-bottom: 12px; color: var(--gray); font-weight: bold;">Способ оплаты</label>
+                    <div style="padding: 15px; background: #252525; border: 1px solid #333; border-radius: 5px;">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="radio" name="paymentMethod" value="kaspi" checked required style="margin-right: 10px; cursor: pointer; width: 18px; height: 18px;">
+                            <span>💳 Kaspi.kz - Удаленная оплата через приложение</span>
+                        </label>
+                        <small style="display: block; margin-top: 10px; color: var(--gray);">Счет отправляется через SMS. Оплачивайте прямо из приложения Kaspi</small>
+                    </div>
+                </div>
+
+                <!-- Рассрочка -->
+                <div style="padding: 15px; background: #252525; border-radius: 5px;">
+                    <label style="display: flex; align-items: center; cursor: pointer; color: var(--text);">
+                        <input type="checkbox" id="installment" style="margin-right: 10px; cursor: pointer; width: 18px; height: 18px;">
+                        <span>Рассрочка на 12 месяцев (без переплаты)</span>
+                    </label>
+                    <small style="color: var(--gray); display: block; margin-top: 8px;">Доступно для платежей через Kaspi.kz</small>
+                </div>
+
+                <!-- Общая сумма -->
+                <div style="background: #1a1a1a; padding: 20px; border-radius: 5px; border: 1px solid #333;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span>Сумма товаров:</span>
+                        <span id="subtotal">0 тг</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: bold; color: var(--primary);">
+                        <span>Итого к оплате:</span>
+                        <span id="checkoutTotal">0 тг</span>
+                    </div>
+                </div>
+
+                <!-- Кнопки -->
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn" style="flex: 1;">Подтвердить заказ</button>
+                    <button type="button" class="btn btn-close" onclick="closeCheckoutForm()" style="flex: 0.5;">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <button style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: white; font-size: 24px; cursor: pointer;" onclick="closeProductModal()">&times;</button>
+            <div id="productModalContent"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>О магазине</h4>
+                    <p>MetalShop - ваш надежный источник качественных электрогитар. Доставка по всему Казахстану.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/metalshop_kz" target="_blank">📱 Instagram</a>
+                        <a href="https://t.me/metalshop_kz" target="_blank">📢 Telegram</a>
+                        <a href="https://wa.me/77066674829" target="_blank">💬 WhatsApp</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="metalshop.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="#">О доставке</a></li>
+                        <li><a href="#">О возвратах</a></li>
+                        <li><a href="#">Гарантия</a></li>
+                        <li><a href="#">Рассрочка</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>📞 <strong>+7 (706) 667-48-29</strong></p>
+                    <p>📧 <strong>info@metalshop.kz</strong></p>
+                    <p>🏙️ г. Астана, ул. Мангилик ел, 52</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MetalShop. Все права защищены.</p>
+                <p>Made by Zhans 🎸 for metal lovers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Товары с разными ценами
+        const products = [
+            // Бюджетные
+            { id: 1, name: 'Cort G-110', brand: 'Cort', price: 120000, img: 'https://main-cdn.sbermegamarket.ru/big2/hlr-system/-13/947/456/206/221/430/600019107387b2.jpg', description: 'Отличная бюджетная гитара для начинающих. Качественный звук и удобный гриф.' },
+            { id: 2, name: 'Fender Squier Stratocaster', brand: 'Fender', price: 180000, img: 'https://www.bigtv.ru/storage/goodsImages/597/597480/clear_597480_2.jpg', description: 'Легендарная классика для всех уровней. Светлый, чистый звук.' },
+            { id: 3, name: 'Ibanez GRG140', brand: 'Ibanez', price: 150000, img: 'https://i.ebayimg.com/images/g/i5YAAOSw8wpmcJ4z/s-l500.jpg', description: 'Удобная семиструнная гитара с тонким грифом. Идеально для металла.' },
+            { id: 4, name: 'Yamaha Pacifica 012', brand: 'Yamaha', price: 140000, img: 'https://n.cdn.cdek.shopping/images/shopping/15bc5bef003f49c0a146fd134b2182c6.jpg?v=1', description: 'Японское качество в бюджете. Стабильный гриф и тёплый звук.' },
+            
+            // Средний класс
+            { id: 5, name: 'Jackson JS22', brand: 'Jackson', price: 320000, img: 'https://impult.ru/preview/r/456x456/c/456x456/upload/iblock/3bb/3bbc3f874b7b4b410dd4525dd794eac1.jpg', description: 'Классический Jackson для металла. Мощный и агрессивный звук.' },
+            { id: 6, name: 'Ibanez RG420', brand: 'Ibanez', price: 280000, img: 'https://media.sweetwater.com/api/i/q-82__ha-82feb385cb9a66ea__hmac-0e6cc7ebd44458a171e951dae693f3672d7f8bb9/images/closeup/750-RG420HPAHBWB_angle.jpg', description: 'Знаменитая серия RG. Быстрый гриф и активная электроника.' },
+            { id: 7, name: 'ESP LTD Viper-256', brand: 'ESP', price: 350000, img: 'https://avatars.mds.yandex.net/i?id=3448f446dabb336472966056d4d4520e_l-11951579-images-thumbs&n=13', description: 'Универсальная гитара для любого стиля. Сбалансированный звук.' },
+            { id: 8, name: 'Schecter C-1 Player', brand: 'Schecter', price: 310000, img: 'https://avatars.mds.yandex.net/get-mpic/18764038/2a0000019c23f6f91aadea0d8b2895237273/orig', description: 'Американское качество. Красивый дизайн и мощный звук.' },
+            
+            // Премиум
+            { id: 9, name: 'Jackson Randy Rhoads', brand: 'Jackson', price: 450000, img: 'https://avatars.mds.yandex.net/i?id=dcd191471e8fa167b2ad1814ab2cfc0c_l-5163185-images-thumbs&n=13', description: 'Икона металла. Легендарная модель Рэнди Роудса. Агрессивный дизайн и жёсткий звук для тяжёлой музыки.' },
+            { id: 10, name: 'Ibanez Prestige RG855', brand: 'Ibanez', price: 530000, img: 'https://i.ebayimg.com/images/g/i5YAAOSw8wpmcJ4z/s-l500.jpg', description: 'Профессиональный инструмент. Пятиструнный, идеален для экстремального металла.' },
+            { id: 11, name: 'ESP LTD EC-1000', brand: 'ESP', price: 520000, img: 'https://n.cdn.cdek.shopping/images/shopping/nvTqEOwbknnX19KY.jpg?v=1', description: 'Премиум качество. Gibson-подобный звук с японским совершенством.' },
+            { id: 12, name: 'Schecter Hellraiser C-7', brand: 'Schecter', price: 480000, img: 'https://avatars.mds.yandex.net/i?id=5c2466d1644669e901ab6c64dbf772f3_sr-4393404-images-thumbs&n=13', description: 'Семиструнный шедевр. Огромный потенциал для экспериментов.' }
+        ];
+
+        let cart = [];
+
+        // Отобразить товары
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = productsToShow.map(product => `
+                <div class="product-card" onclick="openProductModal(${product.id})">
+                    <img src="${product.img}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p style="color: #888; font-size: 0.9rem; margin-bottom: 10px;">${product.brand}</p>
+                    <div class="price">${product.price.toLocaleString('ru-RU')} тг</div>
+                    <button class="btn" onclick="event.stopPropagation(); addToCart(${product.id})">В корзину</button>
+                </div>
+            `).join('');
+        }
+
+        // Открыть модаль товара
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            const content = `
+                <img src="${product.img}" alt="${product.name}" style="width: 100%; height: 300px; object-fit: contain; margin-bottom: 20px; border-radius: 10px;">
+                <h2 style="margin-bottom: 10px;">${product.name}</h2>
+                <p style="color: var(--gray); margin-bottom: 15px; font-size: 1.1rem;">${product.brand}</p>
+                <div class="price" style="font-size: 1.5rem; margin-bottom: 20px;">${product.price.toLocaleString('ru-RU')} тг</div>
+                <p style="color: #ccc; margin-bottom: 25px; line-height: 1.8;">${product.description}</p>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn" onclick="addToCart(${product.id}); closeProductModal();" style="flex: 1;">Добавить в корзину</button>
+                </div>
+            `;
+            document.getElementById('productModalContent').innerHTML = content;
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        // Закрыть модаль товара
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        // Закрыть модаль при клике на фон
+        window.onclick = function(event) {
+            const productModal = document.getElementById('productModal');
+            if (event.target === productModal) {
+                productModal.style.display = 'none';
+            }
+            const cartModal = document.getElementById('cartModal');
+            if (event.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        }
+
+        // Фильтрация и сортировка товаров
+        function filterAndSortProducts() {
+            const brand = document.getElementById('brandFilter').value;
+            const price = parseInt(document.getElementById('priceFilter').value);
+            const search = document.getElementById('searchFilter').value.toLowerCase();
+            const sort = document.getElementById('sortFilter').value;
+            
+            document.getElementById('priceVal').textContent = price.toLocaleString('ru-RU') + ' тг';
+
+            let filtered = products.filter(p => 
+                (brand === 'all' || p.brand === brand) && 
+                p.price <= price &&
+                (p.name.toLowerCase().includes(search) || p.brand.toLowerCase().includes(search))
+            );
+
+            // Сортировка
+            if (sort === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sort === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (sort === 'name') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+            }
+
+            displayProducts(filtered);
+        }
+
+        // Добавить в корзину
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCart();
+        }
+
+        // Обновить корзину
+        function updateCart() {
+            document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        }
+
+        // Модаль корзины
+        document.getElementById('cartBtn').addEventListener('click', () => {
+            const cartItems = document.getElementById('cartItems');
+            const totalPrice = document.getElementById('totalPrice');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Корзина пуста</p>';
+                totalPrice.textContent = '0';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div style="background: #252525; padding: 10px; border-radius: 5px; margin-bottom: 10px; display: flex; justify-content: space-between;">
+                        <div>
+                            <p>${item.name}</p>
+                            <small>${item.price.toLocaleString('ru-RU')} тг x ${item.quantity}</small>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" style="background: #c41e1e; border: none; color: white; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Удалить</button>
+                    </div>
+                `).join('');
+                totalPrice.textContent = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toLocaleString('ru-RU');
+            }
+            document.getElementById('cartModal').style.display = 'flex';
+        });
+
+        // Удалить из корзины
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+            document.getElementById('cartBtn').click();
+        }
+
+        // Закрыть модаль
+        document.getElementById('closeCart').addEventListener('click', () => {
+            document.getElementById('cartModal').style.display = 'none';
+        });
+
+        // Открыть форму оформления
+        function openCheckoutForm() {
+            if (cart.length === 0) {
+                alert('Корзина пуста!');
+                return;
+            }
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            document.getElementById('subtotal').textContent = total.toLocaleString('ru-RU') + ' тг';
+            document.getElementById('checkoutTotal').textContent = total.toLocaleString('ru-RU') + ' тг';
+            document.getElementById('cartModal').style.display = 'none';
+            document.getElementById('checkoutModal').style.display = 'flex';
+        }
+
+        // Закрыть форму оформления
+        function closeCheckoutForm() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+
+        // Обработка формы оформления
+        document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const city = document.getElementById('customerCity').value;
+            const address = document.getElementById('customerAddress').value;
+            const payment = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const installment = document.getElementById('installment').checked;
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const orderNumber = 'MET' + Date.now().toString().slice(-6);
+            
+            // Формируем сообщение для Telegram
+            const telegramMessage = `
+📋 <b>НОВЫЙ ЗАКАЗ #${orderNumber}</b>
+━━━━━━━━━━━━━━━━
+👤 <b>Имя:</b> ${name}
+📞 <b>Телефон:</b> ${phone}
+🏙️ <b>Город:</b> ${city}
+📍 <b>Адрес:</b> ${address}
+💳 <b>Способ оплаты:</b> ${getPaymentName(payment)}
+📦 <b>Рассрочка:</b> ${installment ? 'Да, 12 месяцев' : 'Нет'}
+
+<b>ТОВАРЫ:</b>
+${cart.map(item => `• ${item.name} (${item.brand}) - ${item.price.toLocaleString('ru-RU')} тг x ${item.quantity} = ${(item.price * item.quantity).toLocaleString('ru-RU')} тг`).join('\n')}
+
+💰 <b>ИТОГО: ${total.toLocaleString('ru-RU')} тг</b>
+━━━━━━━━━━━━━━━━
+            `;
+            
+            // Отправляем в Telegram
+            sendToTelegram(telegramMessage, orderNumber, name, phone, total);
+            
+            // Сохраняем данные заказа в localStorage
+            const orderData = {
+                orderNumber,
+                name,
+                phone,
+                city,
+                address,
+                payment,
+                installment,
+                total,
+                items: cart,
+                date: new Date().toLocaleString('ru-RU')
+            };
+            localStorage.setItem('lastOrder', JSON.stringify(orderData));
+            
+            // Очищаем корзину
+            cart = [];
+            updateCart();
+            closeCheckoutForm();
+            
+            // Перенаправляем на страницу успеха
+            window.location.href = 'success.html?order=' + orderNumber;
+        });
+
+        // Функция отправки в Telegram
+        function sendToTelegram(message, orderNumber, name, phone, total) {
+            const botToken = '8507122907:AAHoxqby1yVjANXLkjp8LVHRfQFWeRzV9JI'; // токен бота
+            const chatId = '7521078965'; // твой личный Telegram ID
+
+            
+            // Используем метод с img (работает везде, обходит CORS)
+            const encodedMessage = encodeURIComponent(message);
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodedMessage}&parse_mode=HTML`;
+            
+            // Отправляем через img тег (это обходит CORS)
+            const img = new Image();
+            img.src = url;
+            img.onerror = () => console.log('Заказ отправлен в Telegram');
+            img.onload = () => console.log('Заказ отправлен в Telegram');
+            
+            // Также пытаемся через fetch (для совместимости)
+            fetch(url, {
+                method: 'GET'
+            }).catch(err => {
+                console.log('Заказ сохранен локально (Telegram может не иметь доступа)');
+            });
+        }
+
+        // Функция для красивого названия способа оплаты
+        function getPaymentName(payment) {
+            const payments = {
+                'kaspi': '💳 Kaspi.kz (Удаленная оплата)'
+            };
+            return payments[payment] || payment;
+        }
+
+        // Фильтры и сортировка
+        document.getElementById('brandFilter').addEventListener('change', filterAndSortProducts);
+        document.getElementById('priceFilter').addEventListener('input', filterAndSortProducts);
+        document.getElementById('searchFilter').addEventListener('input', filterAndSortProducts);
+        document.getElementById('sortFilter').addEventListener('change', filterAndSortProducts);
+
+        // Инициализация
+        displayProducts(products);
+    </script>
+
+<div id="chatWindow" class="chat-container" style="display: none;">
+    <div class="chat-header">
+        <span>Поддержка ⚡</span>
+        <button onclick="toggleChat()" class="close-btn">&times;</button>
+    </div>
+    
+    <div id="chatMessages" class="chat-messages">
+        <div class="message bot">Здравствуйте! Выберите интересующий вас вопрос:</div>
+    </div>
+
+    <div class="chat-options" id="chatOptions">
+        <button onclick="handleSelect('Когда придет заказ?', 'Обычно доставка занимает 3-5 рабочих дней. Статус можно проверить в личном кабинете.')">📦 Когда придет заказ?</button>
+        <button onclick="handleSelect('Как вернуть товар?', 'Вернуть товар можно в течение 14 дней через любой пункт выдачи.')">🔄 Возврат товара</button>
+        <button onclick="handleSelect('Способы оплаты', 'Мы принимаем карты всех банков, СБП и электронные кошельки.')">💳 Оплата</button>
+        <button onclick="handleSelect('Где найти чек?', 'Чек отправляется на вашу почту сразу после оплаты заказа.')">🧾 Где мой чек?</button>
+        <button onclick="handleSelect('Связаться с оператором', 'Все операторы сейчас заняты, но мы ответим вам на почту в течение часа.')">🎧 Оператор</button>
+    </div>
+</div>
+
+<button class="chat-trigger" onclick="toggleChat()">💬 Задать вопрос</button>
+    <script src="script.js"></script>
+</body>sssssssssssssssssss
+</body>
+</html>

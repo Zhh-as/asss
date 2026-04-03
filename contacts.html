@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты | MetalShop</title>
+    <link rel="stylesheet" href="stylee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">Metal<span>Shop</span></div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="metalshop.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <div class="cart-icon" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </div>
+                <div class="burger" id="burger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <section class="contacts-section">
+            <h1>Свяжитесь с нами</h1>
+            <p style="color: #ccc; margin-bottom: 40px;">Мы всегда готовы помочь вам найти идеальную гитару</p>
+
+            <div class="contacts-grid">
+                <!-- Телефон -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Телефон</h3>
+                    <p><a href="tel:+7 700 247 35 11">+7 700 247 35 11</a></p>
+                    <p style="font-size: 0.9rem; color: #888;">Пн-Вс: 9:00 - 21:00</p>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Электронная почта</h3>
+                    <p><a href="mailto:info@metalshop.kz">info@metalshop.kz</a></p>
+                    <p style="font-size: 0.9rem; color: #888;">Ответим за 24 часа</p>
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p><a href="https://wa.me/77755047432" target="_blank">+7 775 504 7432</a></p>
+                    <p style="font-size: 0.9rem; color: #888;">Быстрый ответ</p>
+                </div>
+
+                <!-- Telegram -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3>Telegram</h3>
+                    <p><a href="https://t.me/metalshop_kz" target="_blank">@metalshop_kz</a></p>
+                    <p style="font-size: 0.9rem; color: #888;">Чат с поддержкой</p>
+                </div>
+
+                <!-- Instagram -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p><a href="https://instagram.com/metalshop_kz" target="_blank">@metalshop_kz</a></p>
+                    <p style="font-size: 0.9rem; color: #888;">Новинки и акции</p>
+                </div>
+
+                <!-- Адрес -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Адрес</h3>
+                    <p>г. Астана, ул. Мангилик ел, 52</p>
+                    <p style="font-size: 0.9rem; color: #888;">Шоурум открыт ежедневно</p>
+                </div>
+            </div>
+
+            <!-- Форма обратной связи -->
+            <section class="contact-form-section" style="margin-top: 60px;">
+                <h2 style="margin-bottom: 30px; text-align: center;">Напишите нам</h2>
+                <form style="max-width: 600px; margin: 0 auto;">
+                    <div style="margin-bottom: 20px;">
+                        <input type="text" placeholder="Ваше имя" style="width: 100%; padding: 12px; background: #252525; border: 1px solid #333; color: white; border-radius: 5px;" required>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <input type="email" placeholder="Ваша почта" style="width: 100%; padding: 12px; background: #252525; border: 1px solid #333; color: white; border-radius: 5px;" required>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <textarea placeholder="Ваше сообщение" rows="5" style="width: 100%; padding: 12px; background: #252525; border: 1px solid #333; color: white; border-radius: 5px; font-family: 'Segoe UI', sans-serif;"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Отправить сообщение</button>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <h2>Ваша корзина</h2>
+            <div id="cartItems"></div>
+            <div class="total">Итого: <span id="totalPrice">0</span> тг</div>
+            <button class="btn" onclick="checkout()">Оформить заказ</button>
+            <button class="btn btn-close" id="closeCart">Закрыть</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>О магазине</h4>
+                    <p>MetalShop - ваш надежный источник качественных электрогитар. Доставка по всему Казахстану.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/metalshop_kz" target="_blank">📱 Instagram</a>
+                        <a href="https://t.me/metalshop_kz" target="_blank">📢 Telegram</a>
+                        <a href="https://wa.me/77066674829" target="_blank">💬 WhatsApp</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="metalshop.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="#">О доставке</a></li>
+                        <li><a href="#">О возвратах</a></li>
+                        <li><a href="#">Гарантия</a></li>
+                        <li><a href="#">Рассрочка</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>📞 <strong>+7 (706) 667-48-29</strong></p>
+                    <p>📧 <strong>info@metalshop.kz</strong></p>
+                    <p>🏙️ г. Алматы, ул. Казыбек Би, 187</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MetalShop. Все права защищены.</p>
+                <p>Made with 🎸 for metal lovers</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
